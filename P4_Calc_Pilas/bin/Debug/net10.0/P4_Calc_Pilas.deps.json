@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "P4_Calc_Pilas/1.0.0": {
+        "runtime": {
+          "P4_Calc_Pilas.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "P4_Calc_Pilas/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
