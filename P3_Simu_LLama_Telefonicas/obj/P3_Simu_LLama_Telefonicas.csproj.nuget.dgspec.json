@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj": {}
+    "C:\\Users\\gabri\\source\\repos\\Gabriel-Avalos-28\\Parcial_III_Estructuras_Lineales\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj": {}
   },
   "projects": {
-    "E:\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj": {
+    "C:\\Users\\gabri\\source\\repos\\Gabriel-Avalos-28\\Parcial_III_Estructuras_Lineales\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj",
+        "projectUniqueName": "C:\\Users\\gabri\\source\\repos\\Gabriel-Avalos-28\\Parcial_III_Estructuras_Lineales\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj",
         "projectName": "P3_Simu_LLama_Telefonicas",
-        "projectPath": "E:\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj",
+        "projectPath": "C:\\Users\\gabri\\source\\repos\\Gabriel-Avalos-28\\Parcial_III_Estructuras_Lineales\\P3_Simu_LLama_Telefonicas\\P3_Simu_LLama_Telefonicas.csproj",
         "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "E:\\P3_Simu_LLama_Telefonicas\\obj\\",
+        "outputPath": "C:\\Users\\gabri\\source\\repos\\Gabriel-Avalos-28\\Parcial_III_Estructuras_Lineales\\P3_Simu_LLama_Telefonicas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",

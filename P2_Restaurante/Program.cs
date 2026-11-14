@@ -11,6 +11,10 @@
 //Atendiendo: Familia Lopez - 4 personas
 
 
+
+
+
+using System;
 using P2_Restaurante;
 
 namespace Proyecto2_Restaurante
@@ -50,78 +54,120 @@ namespace Proyecto2_Restaurante
                 Console.WriteLine("0. Salir");
                 Console.Write("Opcion: ");
 
-                opcion = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out opcion))
+                    opcion = -1;
 
-                switch (opcion)
+                if (opcion != 0)
                 {
-                    case 1:
-                        Agregar();
-                        break;
+                    Console.Clear();
 
-                    case 2:
-                        AsignarMesa();
-                        break;
+                    switch (opcion)
+                    {
+                        case 1:
+                            Agregar();
+                            break;
 
-                    case 3:
-                        CancelarReservacion();
-                        break;
+                        case 2:
+                            AsignarMesa();
+                            break;
 
-                    case 4:
-                        BuscarCliente();
-                        break;
+                        case 3:
+                            CancelarReservacion();
+                            break;
 
-                    case 5:
-                        EliminarCliente();
-                        break;
+                        case 4:
+                            BuscarCliente();
+                            break;
 
-                    case 6:
-                        espera.Mostrar();
-                        Console.ReadKey();
-                        break;
+                        case 5:
+                            EliminarCliente();
+                            break;
 
-                    case 7:
-                        MostrarDisponibles();
-                        Console.ReadKey();
-                        break;
+                        case 6:
+                            espera.Mostrar();
+                            break;
 
-                    case 8:
-                        MostrarOcupadas();
-                        Console.ReadKey();
-                        break;
+                        case 7:
+                            MostrarDisponibles();
+                            break;
+
+                        case 8:
+                            MostrarOcupadas();
+                            break;
+
+                        default:
+                            Console.WriteLine("Opcion no valida.");
+                            break;
+                    }
+
+                    Console.WriteLine("\nPresiona una tecla para regresar al menu...");
+                    Console.ReadKey();
                 }
 
             } while (opcion != 0);
+
+            Console.Clear();
+            Console.WriteLine("Cerrando restaurante...");
         }
 
         static void Agregar()
         {
+            Console.WriteLine("=== AGREGAR CLIENTE ===");
+
             Console.Write("Nombre: ");
             string nombre = Console.ReadLine();
 
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                Console.WriteLine("Nombre no valido.");
+                return;
+            }
+
+            if (espera.Buscar(nombre) != null)
+            {
+                Console.WriteLine("Ya existe un cliente con ese nombre en espera.");
+                return;
+            }
+
+            foreach (Mesa mesa in mesas)
+            {
+                if (!mesa.Disponible &&
+                    mesa.Ocupando.Nombre.Equals(
+                        nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Ese cliente ya tiene una mesa asignada.");
+                    return;
+                }
+            }
+
             Console.Write("Numero de personas: ");
-            int personas = int.Parse(Console.ReadLine());
+
+            if (!int.TryParse(Console.ReadLine(), out int personas))
+            {
+                Console.WriteLine("Numero de personas no valido.");
+                return;
+            }
 
             if (personas < 1 || personas > 6)
             {
                 Console.WriteLine("Numero de personas invalido (1-6).");
-                Console.ReadKey();
                 return;
             }
 
             espera.Encolar(new Cliente(nombre, personas));
 
-            Console.WriteLine("Cliente agregado.");
-            Console.ReadKey();
+            Console.WriteLine("Cliente agregado a la lista de espera.");
         }
 
         static void AsignarMesa()
         {
+            Console.WriteLine("=== ASIGNAR MESA ===");
+
             Cliente cliente = espera.VerFrente();
 
             if (cliente == null)
             {
-                Console.WriteLine("No hay clientes.");
-                Console.ReadKey();
+                Console.WriteLine("No hay clientes en espera.");
                 return;
             }
 
@@ -135,8 +181,7 @@ namespace Proyecto2_Restaurante
                 }
             }
 
-            Console.WriteLine("No hay mesas disponibles.");
-            Console.ReadKey();
+            Console.WriteLine("No hay mesas disponibles con capacidad suficiente.");
         }
 
         static void AsignarSiguiente(Mesa mesa)
@@ -146,7 +191,6 @@ namespace Proyecto2_Restaurante
             if (cliente == null)
             {
                 Console.WriteLine($"Mesa {mesa.Numero} disponible.");
-                Console.ReadKey();
                 return;
             }
 
@@ -155,14 +199,20 @@ namespace Proyecto2_Restaurante
 
             Console.WriteLine($"Mesa {mesa.Numero} asignada.");
             Console.WriteLine($"Atendiendo: {cliente}");
-
-            Console.ReadKey();
         }
 
         static void CancelarReservacion()
         {
+            Console.WriteLine("=== CANCELAR RESERVACION ===");
+
             Console.Write("Nombre del cliente: ");
             string nombre = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                Console.WriteLine("Nombre no valido.");
+                return;
+            }
 
             for (int i = 0; i < mesas.Length; i++)
             {
@@ -172,22 +222,34 @@ namespace Proyecto2_Restaurante
                 {
                     mesas[i].Liberar();
 
-                    Console.WriteLine(
-                        $"Reservacion de {nombre} cancelada.");
+                    Console.WriteLine($"Reservacion de {nombre} cancelada.");
 
                     AsignarSiguiente(mesas[i]);
                     return;
                 }
             }
 
-            Console.WriteLine("No se encontro una reservacion ocupando mesa.");
-            Console.ReadKey();
+            if (espera.Eliminar(nombre))
+            {
+                Console.WriteLine("Cliente eliminado de la lista de espera.");
+                return;
+            }
+
+            Console.WriteLine("No se encontro al cliente.");
         }
 
         static void BuscarCliente()
         {
+            Console.WriteLine("=== BUSCAR CLIENTE ===");
+
             Console.Write("Nombre del cliente: ");
             string nombre = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                Console.WriteLine("Nombre no valido.");
+                return;
+            }
 
             Cliente cliente = espera.Buscar(nombre);
 
@@ -195,7 +257,6 @@ namespace Proyecto2_Restaurante
             {
                 Console.WriteLine("Cliente encontrado en lista de espera:");
                 Console.WriteLine(cliente);
-                Console.ReadKey();
                 return;
             }
 
@@ -208,27 +269,30 @@ namespace Proyecto2_Restaurante
                     Console.WriteLine("Cliente encontrado.");
                     Console.WriteLine($"Mesa: {mesas[i].Numero}");
                     Console.WriteLine(mesas[i].Ocupando);
-
-                    Console.ReadKey();
                     return;
                 }
             }
 
             Console.WriteLine("Cliente no encontrado.");
-            Console.ReadKey();
         }
 
         static void EliminarCliente()
         {
+            Console.WriteLine("=== ELIMINAR CLIENTE ===");
+
             Console.Write("Nombre del cliente: ");
             string nombre = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                Console.WriteLine("Nombre no valido.");
+                return;
+            }
 
             if (espera.Eliminar(nombre))
                 Console.WriteLine("Cliente eliminado de la lista de espera.");
             else
                 Console.WriteLine("Cliente no encontrado en la lista de espera.");
-
-            Console.ReadKey();
         }
 
         static void MostrarDisponibles()

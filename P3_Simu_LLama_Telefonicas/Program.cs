@@ -9,8 +9,11 @@
 //Al regresar: Regresando de : BuscarCliente()
 //Ahora: RegistrarCliente()
 
+
+//Funciones :
+//Registrar llamada - Atender llamada - Finalizar llamada - Mostrar llamadas activas - Recuperar ultima llamada - Buscar llamada - Eliminar llamada
+
 using System;
-using System.Collections.Generic;
 
 namespace P3_Simu_LLama_Telefonicas
 {
@@ -19,8 +22,6 @@ namespace P3_Simu_LLama_Telefonicas
         static Cola espera = new Cola();
         static ListaActivas activas = new ListaActivas();
         static Pila finalizadas = new Pila();
-
-        static Stack<string> navegacion = new Stack<string>();
 
         static int contador = 1;
 
@@ -55,35 +56,35 @@ namespace P3_Simu_LLama_Telefonicas
                 switch (opcion)
                 {
                     case 1:
-                        EjecutarFuncion("RegistrarCliente", RegistrarCliente);
+                        RegistrarCliente();
                         break;
 
                     case 2:
-                        EjecutarFuncion("AtenderLlamada", AtenderLlamada);
+                        AtenderLlamada();
                         break;
 
                     case 3:
-                        EjecutarFuncion("FinalizarLlamada", FinalizarLlamada);
+                        FinalizarLlamada();
                         break;
 
                     case 4:
-                        EjecutarFuncion("MostrarLlamadasActivas", MostrarLlamadasActivas);
+                        MostrarLlamadasActivas();
                         break;
 
                     case 5:
-                        EjecutarFuncion("RecuperarUltimaLlamada", RecuperarUltimaLlamada);
+                        RecuperarUltimaLlamada();
                         break;
 
                     case 6:
-                        EjecutarFuncion("BuscarCliente", BuscarCliente);
+                        BuscarCliente();
                         break;
 
                     case 7:
-                        EjecutarFuncion("EliminarLlamada", EliminarLlamada);
+                        EliminarLlamada();
                         break;
 
                     case 8:
-                        EjecutarFuncion("MostrarEspera", MostrarEspera);
+                        MostrarEspera();
                         break;
 
                     case 0:
@@ -102,18 +103,6 @@ namespace P3_Simu_LLama_Telefonicas
                 }
 
             } while (opcion != 0);
-        }
-
-        static void EjecutarFuncion(string nombre, Action funcion)
-        {
-            navegacion.Push(nombre);
-
-            funcion();
-
-            string anterior = navegacion.Pop();
-
-            Console.WriteLine($"\nRegresando de: {anterior}()");
-            Console.WriteLine("Ahora: MenuPrincipal()");
         }
 
         static void RegistrarCliente()

@@ -1,5 +1,4 @@
-﻿
-namespace P2_Restaurante
+﻿namespace P2_Restaurante
 {
     public class Mesa
     {
@@ -11,7 +10,14 @@ namespace P2_Restaurante
         public Mesa(int numero)
         {
             Numero = numero;
-            Capacidad = 6;
+
+            if (numero <= 5)
+                Capacidad = 2;
+            else if (numero <= 10)
+                Capacidad = 4;
+            else
+                Capacidad = 6;
+
             Disponible = true;
             Ocupando = null;
         }

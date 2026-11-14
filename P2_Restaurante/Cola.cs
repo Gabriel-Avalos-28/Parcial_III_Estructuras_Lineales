@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace P2_Restaurante
 {
     public class Cola

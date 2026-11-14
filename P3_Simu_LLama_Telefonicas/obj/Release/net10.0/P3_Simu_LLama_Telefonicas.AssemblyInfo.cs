@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("P3_Simu_LLama_Telefonicas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e288878ae68a4a17e8ea63e383a9a1f58c6578d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36e2b4725f55b7c9028ddb8e38c00c526ae25c2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("P3_Simu_LLama_Telefonicas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("P3_Simu_LLama_Telefonicas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
